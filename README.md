@@ -13,13 +13,10 @@ Next we create our first basket of variables: Using Talib we go through the stan
 Normalizing. 
 There are tons of methods to normalize data, so far none have worked for me. So we are going to use a normalizing method developed by stock analysts, but modified. Relative strength indicator is a normalized ( values between 0 and 100 ) based on the relation of the current price against a lookback period. The average is always moving, and we want to know momentum really. because what does it matter if a stock moves from $110 to $111 if the mean of the stock price over the past 5 years is $30. the mean timeframe needs to be shorter. 
 
-Setting up the learning. This is a challenge. 
+Setting up the learning. This is a challenge. We dont know what we are looking for specifically, we have a target, and only two options. yes or no. There are two options we will look at right now: Classification or Regression. Classification is the logical choice however we run into a problem after a couple trials, the algorithm always picks 'yes'. the data itself is biased. it winds somewhere between 60-80% of the time. which is expected. lets say the X train set results in a Y that is 80% yes, once the MLPclassifier gets an 80% score, its pretty happy with itself, thats the downside of using built in loss models. but our goal is not to get an accuracy close to the probability of win or lose, we want to exceed that. Regression in this instance can help. If we use a regression we get a "vector", but additional work will need to be done to get an actual binomial output. First we have to produced a ton of results on a test set, then create a baysian classification distribution. buy taking the means and std and building a prediction code based on the outputted vector. This is just one of the challenges. With classification we need to force mutation into the net otherwise the code reverts to choosing only one outcome. weighting a constant neuron to be always on. 
 
-
-Getting out a prediction
-
-
-translating it:
+translating it to a usable strategy. 
+Depending on our method (regression or classification) our descision method will be slightly different. Ideally a probablity is output, and based on the probqablity of a set of inputs we can choose to make a trade or not. 
 
 backtesting
 Backtesting is done on a new file. I decided to seperate them to make the pre-processign easier to tease out. The files are long already and its too much to wait for an ultimately poor answer. 
